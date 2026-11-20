@@ -16,6 +16,7 @@ export type QuestProject = {
   description: string;
   tech: string[];
   repoUrl: string;
+  image: string;
 };
 
 export type SkillItem = {
@@ -169,62 +170,44 @@ export const SITE_CONTENT = {
     eyebrow: "02 // QUEST LOG",
     heading: "Completed & active missions",
     subheading:
-      "Real academic and personal builds spanning AI integrations, full-stack web apps, and C++ systems.",
+      "Featured game development and healthcare web application builds.",
     filters: ["All", "AI", "Web", "Systems"] satisfies QuestCategory[],
     items: [
       {
-        id: "ai-resume-forge",
+        id: "snake-2d-game",
         code: "QUEST 01",
-        title: "AI Resume Forge",
-        categories: ["AI", "Web"],
+        title: "Snake 2D Game",
+        categories: ["Web", "AI"],
         difficulty: "HARD",
         description:
-          "AI builds and optimizes resumes from your skills, generating multiple formats.",
-        tech: ["Next.js", "Claude API", "Tailwind"],
-        repoUrl: "https://github.com/Muneebgulistan/ai-resume-forge",
+          "2D snake survival arena game for Android and browser featuring an 8000×8000 wraparound world, AI rival snake behaviors, 16 custom skins, and progression hub.",
+        tech: ["JavaScript", "HTML5 Canvas", "Capacitor", "Android"],
+        repoUrl: "https://github.com/Muneebgulistan/snake_2d_game",
+        image: "/projects/snake-2d-game.jpg",
       },
       {
-        id: "medic-website",
+        id: "cricket-career-game",
         code: "QUEST 02",
-        title: "Medic Website",
+        title: "Cricket Career Game",
+        categories: ["Systems", "AI"],
+        difficulty: "BOSS",
+        description:
+          "3D cricket career simulation featuring authentic player progression from Under-16 to World Cup, tournament engine, ball physics, and opponent AI.",
+        tech: ["Unity 3D", "C#", "TypeScript", "Game Physics"],
+        repoUrl: "https://github.com/Muneebgulistan/Cricket-Career-Game",
+        image: "/projects/cricket-career-game.jpg",
+      },
+      {
+        id: "medivault",
+        code: "QUEST 03",
+        title: "MediVault",
         categories: ["Web"],
         difficulty: "MEDIUM",
         description:
-          "Platform connecting patients with doctors for appointments.",
-        tech: ["React", "Node.js", "MongoDB"],
-        repoUrl: "https://github.com/Muneebgulistan",
-      },
-      {
-        id: "ai-quiz-app",
-        code: "QUEST 03",
-        title: "AI Quiz App",
-        categories: ["AI"],
-        difficulty: "MEDIUM",
-        description:
-          "Console quiz that adapts difficulty to performance.",
-        tech: ["Python", "AI logic"],
-        repoUrl: "https://github.com/Muneebgulistan",
-      },
-      {
-        id: "undo-redo-engine",
-        code: "QUEST 04",
-        title: "Undo Redo Engine",
-        categories: ["Systems"],
-        difficulty: "HARD",
-        description:
-          "Command-pattern engine in C++ with unlimited undo/redo.",
-        tech: ["C++", "Data structures"],
-        repoUrl: "https://github.com/Muneebgulistan",
-      },
-      {
-        id: "console-mini-os",
-        code: "QUEST 05",
-        title: "Console Mini OS",
-        categories: ["Systems"],
-        difficulty: "BOSS",
-        description: "Terminal-based OS simulator in C++.",
-        tech: ["C++", "Systems Programming", "Terminal UI"],
-        repoUrl: "https://github.com/Muneebgulistan/console-mini-os",
+          "Healthcare & personal medical records dashboard for managing doctor profiles, clinical visits, lab results, and chronological patient timelines.",
+        tech: ["JavaScript", "Node.js", "Express", "SQLite"],
+        repoUrl: "https://github.com/Muneebgulistan/MediVault",
+        image: "/projects/medivault.jpg",
       },
     ] satisfies QuestProject[],
   },

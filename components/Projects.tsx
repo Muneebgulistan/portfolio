@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   SITE_CONTENT,
   type QuestCategory,
@@ -103,62 +104,78 @@ export default function Projects() {
         {filteredQuests.map((quest) => (
           <article
             key={quest.id}
-            className="hud-panel hud-panel-interactive flex flex-col justify-between p-6"
+            className="hud-panel hud-panel-interactive group flex flex-col justify-between overflow-hidden"
           >
             <div>
-              {/* Top Meta Line */}
-              <div className="flex items-center justify-between gap-2 border-b border-border pb-3.5">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-cyan">
-                  {quest.code}
-                </span>
-                <DifficultyBadge difficulty={quest.difficulty} />
+              {/* Project Preview Banner */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-bg">
+                <Image
+                  src={quest.image}
+                  alt={`${quest.title} preview`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent opacity-80" />
               </div>
 
-              {/* Categories */}
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {quest.categories.map((cat) => (
-                  <span
-                    key={cat}
-                    className="font-mono text-[10px] uppercase tracking-widest text-muted"
-                  >
-                    [{cat}]
+              <div className="p-6 pb-0">
+                {/* Top Meta Line */}
+                <div className="flex items-center justify-between gap-2 border-b border-border pb-3.5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-cyan">
+                    {quest.code}
                   </span>
-                ))}
-              </div>
+                  <DifficultyBadge difficulty={quest.difficulty} />
+                </div>
 
-              {/* Title & Description */}
-              <h3 className="mt-2 font-display text-xl font-bold uppercase tracking-wide text-text sm:text-2xl">
-                {quest.title}
-              </h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-text/85 sm:text-base">
-                {quest.description}
-              </p>
+                {/* Categories */}
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {quest.categories.map((cat) => (
+                    <span
+                      key={cat}
+                      className="font-mono text-[10px] uppercase tracking-widest text-muted"
+                    >
+                      [{cat}]
+                    </span>
+                  ))}
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="mt-2 font-display text-xl font-bold uppercase tracking-wide text-text sm:text-2xl">
+                  {quest.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-text/85 sm:text-base">
+                  {quest.description}
+                </p>
+              </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-border/70">
-              {/* Tech Tags */}
-              <div className="mb-4 flex flex-wrap gap-2">
-                {quest.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="border border-border bg-bg/80 px-2.5 py-1 font-mono text-xs text-text/90"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="p-6 pt-6">
+              <div className="border-t border-border/70 pt-4">
+                {/* Tech Tags */}
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {quest.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="border border-border bg-bg/80 px-2.5 py-1 font-mono text-xs text-text/90"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-              {/* Repo Link */}
-              <a
-                href={quest.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-cyan transition-colors hover:text-text"
-              >
-                <span>View source</span>
-                <span aria-hidden="true">↗</span>
-                <span className="sr-only">for {quest.title} on GitHub</span>
-              </a>
+                {/* Repo Link */}
+                <a
+                  href={quest.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-cyan transition-colors hover:text-text"
+                >
+                  <span>View source</span>
+                  <span aria-hidden="true">↗</span>
+                  <span className="sr-only">for {quest.title} on GitHub</span>
+                </a>
+              </div>
             </div>
           </article>
         ))}
