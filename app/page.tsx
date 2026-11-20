@@ -29,7 +29,36 @@ function Arrow() { return <span aria-hidden="true">↗</span>; }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formMessage, setFormMessage] = useState("");
   const closeMenu = () => setMenuOpen(false);
+
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormStatus("submitting");
+    setFormMessage("");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFormStatus("success");
+        setFormMessage("Message sent! I'll get back to you soon.");
+        form.reset();
+      } else {
+        setFormStatus("error");
+        setFormMessage(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setFormStatus("error");
+      setFormMessage("Could not send message. Please email muneegulistan@gmail.com directly.");
+    }
+  }
 
   return (
     <main>
@@ -156,10 +185,39 @@ export default function Home() {
 
       <section className="contact-section" id="contact">
         <div className="section-wrap contact-inner">
-          <div className="section-kicker">06 / CONTACT</div>
-          <h2>Have an idea?<br /><span className="gradient-text">Let’s make it happen.</span></h2>
-          <p>Open to meaningful collaborations, interesting projects and conversations about AI, development and creative technology.</p>
-          <a className="button button-primary contact-button" href="mailto:muneegulistan@gmail.com">muneegulistan@gmail.com <Arrow /></a>
+          <div className="contact-grid">
+            <div className="contact-copy">
+              <div className="section-kicker">06 / CONTACT</div>
+              <h2>Have an idea?<br /><span className="gradient-text">Let’s make it happen.</span></h2>
+              <p>Open to meaningful collaborations, interesting projects and conversations about AI, development and creative technology.</p>
+              <a className="button button-ghost contact-button" href="mailto:muneegulistan@gmail.com">muneegulistan@gmail.com <Arrow /></a>
+            </div>
+            <form className="contact-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleContactSubmit}>
+              <input type="hidden" name="access_key" value="680db026-86f8-44b2-b752-9638243ced9e" />
+              <input type="checkbox" name="botcheck" className="honeypot" tabIndex={-1} autoComplete="off" />
+              <h3>Send me a message</h3>
+              <label className="form-field">
+                <span>FULL NAME</span>
+                <input type="text" name="name" required placeholder="Your name" />
+              </label>
+              <label className="form-field">
+                <span>EMAIL ADDRESS</span>
+                <input type="email" name="email" required placeholder="you@example.com" />
+              </label>
+              <label className="form-field">
+                <span>MESSAGE</span>
+                <textarea name="message" required rows={4} placeholder="Tell me about your project or idea..." />
+              </label>
+              <button type="submit" className="button button-primary form-submit" disabled={formStatus === "submitting"}>
+                {formStatus === "submitting" ? "Sending..." : "Send message"} <Arrow />
+              </button>
+              {formMessage && (
+                <p className={`form-feedback ${formStatus === "success" ? "feedback-success" : "feedback-error"}`} role="status">
+                  {formMessage}
+                </p>
+              )}
+            </form>
+          </div>
           <div className="contact-bottom"><span>ABBOTTABAD, PAKISTAN</span><div><a href="https://www.linkedin.com/in/muneeb-gulistan/" target="_blank" rel="noreferrer">LINKEDIN</a><a href="https://x.com/muneebgulistan" target="_blank" rel="noreferrer">X</a><a href="https://github.com/Muneebgulistan" target="_blank" rel="noreferrer">GITHUB</a></div></div>
         </div>
       </section>
