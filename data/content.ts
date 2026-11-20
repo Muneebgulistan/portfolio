@@ -55,6 +55,14 @@ export type ServicePack = {
   features: string[];
 };
 
+export type SocialChannel = {
+  name: string;
+  handle: string;
+  detail: string;
+  href: string;
+  code: string;
+};
+
 export type InterestedOption =
   | "Not sure"
   | "Basic"
@@ -92,6 +100,7 @@ export const SITE_CONTENT = {
         sectionId: "achievements",
       },
       { label: "Packs", href: "#packs", sectionId: "packs" },
+      { label: "Social", href: "#social", sectionId: "social" },
       { label: "Contact", href: "#contact", sectionId: "contact" },
     ] satisfies NavItem[],
   },
@@ -352,8 +361,58 @@ export const SITE_CONTENT = {
       },
     ] satisfies ServicePack[],
   },
+  socialsSection: {
+    eyebrow: "06 // FIND ME ONLINE",
+    heading: "Different platforms. One curious mind.",
+    subheading:
+      "I share different sides of my work, tech experiments, and everyday journey depending on the platform.",
+    channels: [
+      {
+        name: "Instagram · Flex",
+        handle: "@muneeb.flex",
+        detail: "Gym, cars & original content",
+        href: "https://www.instagram.com/muneeb.flex/",
+        code: "IG // 01",
+      },
+      {
+        name: "Instagram · Personal",
+        handle: "@muneebgulistan",
+        detail: "My photos, videos & everyday moments",
+        href: "https://www.instagram.com/muneebgulistan/",
+        code: "IG // 02",
+      },
+      {
+        name: "Instagram · Tech",
+        handle: "@ai.muneeb",
+        detail: "Tech, AI & my game-dev journey",
+        href: "https://www.instagram.com/ai.muneeb/",
+        code: "IG // 03",
+      },
+      {
+        name: "LinkedIn",
+        handle: "Muneeb Gulistan",
+        detail: "AI news, insights & professional updates",
+        href: "https://www.linkedin.com/in/muneeb-gulistan/",
+        code: "IN // 04",
+      },
+      {
+        name: "X",
+        handle: "@muneebgulistan",
+        detail: "AI, technology & ideas",
+        href: "https://x.com/muneebgulistan",
+        code: "𝕏 // 05",
+      },
+      {
+        name: "GitHub",
+        handle: "Muneebgulistan",
+        detail: "Code, experiments & open projects",
+        href: "https://github.com/Muneebgulistan",
+        code: "GH // 06",
+      },
+    ] satisfies SocialChannel[],
+  },
   contact: {
-    eyebrow: "06 // JOIN THE PARTY",
+    eyebrow: "07 // JOIN THE PARTY",
     heading: "Start a new mission together",
     lead: "Available for freelance builds, AI web integrations, collaborations, and developer opportunities. Send a transmission below or reach out directly.",
     email: "muneegulistan@gmail.com",

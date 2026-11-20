@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Achievements from "@/components/Achievements";
 import Services from "@/components/Services";
+import Socials from "@/components/Socials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import KonamiEasterEgg from "@/components/KonamiEasterEgg";
@@ -27,6 +28,7 @@ export default function HomePage() {
         <Skills />
         <Achievements />
         <Services />
+        <Socials />
         <Contact />
       </main>
 
