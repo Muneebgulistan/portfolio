@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const socials = [
   { name: "Instagram · Flex", handle: "@muneeb.flex", detail: "Gym, cars & original content", href: "https://www.instagram.com/muneeb.flex/", icon: "◎" },
@@ -62,9 +63,14 @@ export default function Home() {
         <div className="hero-visual">
           <div className="visual-orbit orbit-a" /><div className="visual-orbit orbit-b" />
           <div className="visual-core">
-            <div className="core-grid" />
-            <div className="core-initials">MG<span>.</span></div>
-            <div className="core-caption">IDEAS → CODE → IMPACT</div>
+            <Image
+              src="/muneeb-profile.jpg"
+              alt="Muneeb Gulistan"
+              fill
+              priority
+              sizes="(max-width: 600px) 190px, 245px"
+              className="profile-photo"
+            />
           </div>
           <div className="float-card float-top"><span className="float-icon">✦</span><div><b>AI + Creativity</b><small>Always experimenting</small></div></div>
           <div className="float-card float-bottom"><span className="float-icon blue-icon">⌘</span><div><b>Build in public</b><small>Learning by creating</small></div></div>
