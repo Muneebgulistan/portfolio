@@ -1,34 +1,22 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const poppinsHeadings = Poppins({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["600", "700", "800"],
-});
-
-const poppinsBody = Poppins({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["300", "400", "500"],
-});
-
 export const metadata: Metadata = {
-  title: "Muneeb Gulistan | Portfolio",
-  description: "Web Developer | AI Learner - Portfolio of Muneeb Gulistan",
+  title: "Muneeb Gulistan — AI Developer & Creator",
+  description:
+    "Muneeb Gulistan is an AI student, developer, game development learner, and content creator from Abbottabad, Pakistan.",
+  metadataBase: new URL("https://portfolio-eta-lemon-13.vercel.app"),
+  openGraph: {
+    title: "Muneeb Gulistan — AI Developer & Creator",
+    description: "Building ideas into digital reality.",
+    type: "website"
+  }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${poppinsBody.variable} ${poppinsHeadings.variable} antialiased`}>
-        {children}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
